@@ -1,10 +1,10 @@
 {
-  "name": "justice_firm",
-  "version": "1.0.0",
-  "description": "A website for lawyers and for clients to access their service.",
-  "license": "MIT",
-  "private": false,
-  "dependencies": {
-    "bootstrap": "^5.2.2"
-  }
+	"name": "justice_firm",
+	"version": "1.0.0",
+	"description": "A website for lawyers and for clients to access their service.",
+	"license": "MIT",
+	"private": false,
+	"dependencies": {
+		"bootstrap": "^5.2.2"
+	}
 }

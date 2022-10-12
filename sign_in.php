@@ -1,5 +1,5 @@
-<?php require_once "php/common.php";
-require_once "php/templates.php";
+<?php require_once "php/db_common.php";
+require_once "php/main_html_templates.php";
 
 redirect_if_signed_in();
 
@@ -18,11 +18,11 @@ if (isset($_POST["submit"])) {
 
 	if (count(errs()) === 0) {
 		$res = sign_in($_POST["email"], $_POST["password"]);
-		if($res !== true){
+		if ($res !== true) {
 			err_str($res);
 		} else {
 			msg_str("Signed in sucessfully.");
-			switch_location($PAGES[PageIndex::Home]->path);
+			redirect_page(PageIndex::Home);
 		}
 	}
 }
@@ -30,7 +30,7 @@ if (isset($_POST["submit"])) {
 basic_setup();
 show_html_start_block(PageIndex::SignIn);
 show_messages(); ?>
-	<form class="form-card my-3" action="#" enctype="multipart/form-data" method="post">
+	<form class="form-card my-3 bg-gradient--plum-plate" action="#" enctype="multipart/form-data" method="post">
 		<div class="form-title">
 			Sign In
 		</div>

@@ -1,6 +1,6 @@
-<?php require_once "php/common.php";
-require_once "php/templates.php";
-require_once "php/registration_common.php";
+<?php require_once "php/db_common.php";
+require_once "php/main_html_templates.php";
+require_once "php/interaction_common.php";
 
 redirect_if_signed_in();
 
@@ -13,7 +13,7 @@ if (isset($_POST["submit"])) {
 			err_str($res);
 		} else {
 			msg_str("Registered as a client sucessfully.");
-			switch_location($PAGES[PageIndex::Home]->path);
+			redirect_page(PageIndex::Home);
 		}
 	}
 }
@@ -24,6 +24,7 @@ show_messages(); ?>
 	<form class="form-card my-3" action="#" enctype="multipart/form-data" method="post">
 		<div class="form-title">
 			Register as a client
+			<a class="card-link link-dark h6-imp" href="register_lawyer.php">Are a lawyer? Register as one.</a>
 		</div>
 		<div class="form">
 			<?php
@@ -42,7 +43,6 @@ TAG
 		</div>
 		<div class="form-footer">
 			<button type="submit" name="submit" value="y" class="btn btn-lg btn-tertiary">Register</button>
-			<a class="card-link link-dark" href="register_lawyer.php">Are a lawyer? Register as one.</a>
 		</div>
 	</form>
 <?php show_html_end_block();

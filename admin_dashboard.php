@@ -1,5 +1,5 @@
-<?php require_once "php/common.php";
-require_once "php/templates.php";
+<?php require_once "php/db_common.php";
+require_once "php/main_html_templates.php";
 
 redirect_if_not(USER_ADMIN);
 
@@ -58,7 +58,9 @@ show_messages(); ?>
 					<td><?= $waiting_lawyer->name ?></td>
 					<td><?= $waiting_lawyer->email ?></td>
 					<td><?= $waiting_lawyer->phone ?></td>
-					<td><?= $waiting_lawyer->address ?></td>
+					<td>
+						<pre class="p-0 m-0"><?= $waiting_lawyer->address ?></pre>
+					</td>
 					<td><a href="<?= $waiting_lawyer->certification_link ?>" class="link-dark">Certification</a></td>
 				</tr>
 			<?php }

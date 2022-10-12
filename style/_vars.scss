@@ -72,8 +72,10 @@ $table-border-level: $table-bg-level - 4;
 
 // Font sizes and families
 $font-size-base: 1.3rem;
+$font-size-sm: $font-size-base * .8;
+$font-size-lg: $font-size-base * 1.25;
 $code-font-size: 95%;
-$font-family-sans-serif: 'Quicksand', sans-serif;
+$font-family-sans-serif: 'Rubik', sans-serif;
 $font-family-monospace: 'Inconsolata', monospace;
 
 // Border Radii
@@ -86,3 +88,5 @@ $border-width: 1px;
 $breadcrumb-divider: quote(">");
 
 $dropdown-padding-y: 1rem;
+
+$nav-link-font-weight: 400;

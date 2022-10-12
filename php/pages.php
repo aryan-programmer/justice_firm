@@ -1,16 +1,15 @@
 <?php
-const TITLE_DEFAULT = "Justice Firm";
-abstract class PageIndex {
-	const None            = -1;
-	const Home            = self::None + 1;
-	const RegisterClient  = self::Home + 1;
-	const SignIn          = self::RegisterClient + 1;
-	const SignOut         = self::SignIn + 1;
-	const ClientDashboard = self::SignOut + 1;
-	const LawyerDashboard = self::ClientDashboard + 1;
-	const AdminDashboard  = self::LawyerDashboard + 1;
-	const SearchLawyer    = self::AdminDashboard + 1;
 
+abstract class PageIndex {
+	const None               = -1;
+	const Home               = self::None + 1;
+	const RegisterClient     = self::Home + 1;
+	const SignIn             = self::RegisterClient + 1;
+	const SignOut            = self::SignIn + 1;
+	const Appointments       = self::SignOut + 1;
+	const AdminDashboard     = self::Appointments + 1;
+	const SearchLawyer       = self::AdminDashboard + 1;
+	const AppointmentDetails = self::SearchLawyer + 1;
 
 	private function __construct() {
 
@@ -18,6 +17,10 @@ abstract class PageIndex {
 }
 
 class Page {
+	/**
+	 * @var Page[] $pages
+	 */
+	static $pages;
 	public $path;
 	public $name;
 	public $shows_on_header;
@@ -38,51 +41,55 @@ class Page {
 	}
 }
 
-$PAGES = [
-	PageIndex::Home            => new Page(
+Page::$pages = [
+	PageIndex::None               => new Page(
+		"index.php",
+		"Page",
+		false
+	),
+	PageIndex::AppointmentDetails => new Page(
+		"appointment_details.php",
+		"Appointment Details",
+		false
+	),
+
+	PageIndex::Home           => new Page(
 		"index.php",
 		"Home",
 		true
 	),
-	PageIndex::SearchLawyer         => new Page(
+	PageIndex::SearchLawyer   => new Page(
 		"search_lawyer.php",
 		"Search Lawyer",
 		true,
 	),
-	PageIndex::RegisterClient  => new Page(
+	PageIndex::RegisterClient => new Page(
 		"register.php",
 		"Register",
 		true,
 		true,
 	),
-	PageIndex::ClientDashboard => new Page(
-		"client_dashboard.php",
-		"Client Dashboard",
+	PageIndex::Appointments   => new Page(
+		"appointments.php",
+		"Appointments",
 		true,
 		false,
-		USER_CLIENT
+		["not", USER_ADMIN],
 	),
-	PageIndex::LawyerDashboard => new Page(
-		"lawyer_dashboard.php",
-		"Lawyer Dashboard",
-		true,
-		false,
-		USER_LAWYER
-	),
-	PageIndex::AdminDashboard  => new Page(
+	PageIndex::AdminDashboard => new Page(
 		"admin_dashboard.php",
 		"Admin Dashboard",
 		true,
 		false,
 		USER_ADMIN
 	),
-	PageIndex::SignIn          => new Page(
+	PageIndex::SignIn         => new Page(
 		"sign_in.php",
 		"Sign In",
 		true,
 		true,
 	),
-	PageIndex::SignOut         => new Page(
+	PageIndex::SignOut        => new Page(
 		"sign_out.php",
 		"Sign Out",
 		true,

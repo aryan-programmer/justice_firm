@@ -81,6 +81,7 @@ CREATE TABLE `appointment` (
 	`case_id`     INT                                       NULL,
 	`description` TEXT                                      NOT NULL,
 	`timestamp`   DATETIME                                  NULL,
+	`opened_on`   DATETIME                                  NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`status`      ENUM ('waiting', 'rejected', 'confirmed') NOT NULL DEFAULT 'waiting',
 	FOREIGN KEY (`client_id`)
 		REFERENCES `client` (`id`),
@@ -163,3 +164,15 @@ VALUES ('Bankruptcy'),
        ('Intellectual Property'),
        ('Personal Injury'),
        ('Tax');
+
+ALTER TABLE `appointment`
+	ADD COLUMN `opened_on` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+UPDATE `appointment`
+SET `status` = ?
+WHERE `id` = ?;
+
+UPDATE `appointment`
+SET `status`    = ?,
+    `timestamp` = ?
+WHERE `id` = ?;

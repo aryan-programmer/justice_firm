@@ -1,6 +1,6 @@
 function on_pos(position) {
 	console.log(position);
-	document.getElementById("latitude").value = position.coords.latitude;
+	document.getElementById("latitude").value  = position.coords.latitude;
 	document.getElementById("longitude").value = position.coords.longitude;
 }
 

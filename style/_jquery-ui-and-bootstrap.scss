@@ -32,6 +32,7 @@ legend {
 	padding-inline-start: 2px;
 	padding-inline-end: 2px;
 }
+
 // endregion un-reboot fieldset and legend
 
 // region ...un-reboot widget and its elements
@@ -48,6 +49,7 @@ legend {
 .ui-widget *, .ui-widget {
 	line-height: unset !important;
 }
+
 // endregion un-reboot widget and its elements
 // endregion un-reboot
 
@@ -71,6 +73,7 @@ legend {
 	border-bottom-left-radius: 50rem !important;
 	border-bottom-right-radius: 50rem !important;
 }
+
 // endregion convenience rounding to a pill for select sides
 
 // region ...convenience rounding to a 0 for select sides
@@ -93,12 +96,14 @@ legend {
 	border-bottom-left-radius: 0 !important;
 	border-bottom-right-radius: 0 !important;
 }
+
 // endregion convenience rounding to a 0 for select sides
 
 // region ...make ui-controlgroup-label font size bigger
 .ui-controlgroup-label * {
 	font-size: 94% !important;
 }
+
 // endregion make ui-controlgroup-label font size bigger
 
 // region ...hide arrows from numbers inputs
@@ -116,6 +121,7 @@ input[type=number].hide-arrows,
 input[type=number].ui-spinner-input {
 	-moz-appearance: textfield;
 }
+
 // endregion hide arrows from numbers inputs
 
 .ui-text-input {

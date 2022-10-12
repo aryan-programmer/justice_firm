@@ -48,7 +48,7 @@ function get_registration_common() {
 		} elseif ($photo["size"] > MAX_FILE_SIZE) {
 			err_str(INVALID_FILE_SIZE_ERR_MSG);
 		} elseif (!in_array($check["mime"], VALID_IMAGE_MIME_TYPES)) {
-			err_str($check["mime"].INVALID_IMAGE_ERR_MSG);
+			err_str($check["mime"] . INVALID_IMAGE_ERR_MSG);
 		} else {
 			if (count(errs()) > 0) {
 				return [false, $name, $email, $password, $phone, $address, $photo_file];
@@ -70,8 +70,8 @@ function get_registration_common() {
 function lawyer_registration() {
 	[$ok, $name, $email, $password, $phone, $address, $photo_file] = get_registration_common();
 
-	$lat = $_POST["latitude"] ?? "";
-	$lon = $_POST["longitude"] ?? "";
+	$lat             = $_POST["latitude"] ?? "";
+	$lon             = $_POST["longitude"] ?? "";
 	$specializations = $_POST["specializations"] ?? [];
 
 	if ($lat === "" || !is_numeric($lat)) {
@@ -114,3 +114,19 @@ function lawyer_registration() {
 	return [count(errs()) === 0, $name, $email, $password, $phone, $address, $photo_file, $lat, $lon, $certi_file, $specializations];
 }
 
+function appointment_from_get_param(): Appointment {
+	if (isset($_GET["id"])) {
+		$a_id = $_GET["id"];
+		$a    = get_appointment_by_id($a_id);
+		if ($a === false) {
+			err_str("Failed to find the appointment with the given ID");
+			redirect_page(PageIndex::Home);
+			die();
+		}
+		return $a;
+	} else {
+		err_str("Specify an appointment to view details for");
+		redirect_page(PageIndex::Home);
+		die();
+	}
+}
