@@ -2,12 +2,14 @@
 require_once "interaction_common.php";
 require_once "pages.php";
 require_once "html_templates.php";
-$h_title      = TITLE_DEFAULT;
-$h_head       = function () {
+$h_title       = TITLE_DEFAULT;
+$h_nav_title   = TITLE_DEFAULT;
+$h_nav_classes = NAV_CLASS_DEFAULT;
+$h_head        = function () {
 };
-$h_body_end   = function () {
+$h_body_end    = function () {
 };
-$h_show_links = function ($currPageIdx) {
+$h_show_links  = function ($currPageIdx) {
 	global $uid;
 	/** @var Page $page */
 	foreach (Page::$pages as $idx => $page) {
@@ -145,6 +147,7 @@ function redirect_if_signed_in(): void {
 }
 
 function redirect_if_not_signed_in(): void {
+	global $errors;
 	if (restore_user_id() === false) {
 		$errors = [];
 		err_str("You haven't signed in yet.");
@@ -160,8 +163,11 @@ function redirect_with_error($str, $page = PageIndex::Home) {
 }
 
 function basic_setup(bool $force_user = false) {
+	global $errors, $h_nav_classes;
 	$r = restore_user_id();
-	if ($force_user && $r === false) {
+	if ($r === true) {
+		$h_nav_classes = NAV_CLASS_BY_USER[$_SESSION[USER_TYPE]];
+	} elseif ($force_user) {
 		$errors = [];
 		err_str("You haven't signed in yet.");
 		redirect_page(PageIndex::Home);
@@ -170,7 +176,7 @@ function basic_setup(bool $force_user = false) {
 }
 
 function show_html_start_block($currPageIdx = PageIndex::None) {
-	global $h_title, $h_head, $h_show_links;
+	global $h_title, $h_head, $h_show_links, $h_nav_title, $h_nav_classes;
 	?>
 	<!DOCTYPE html>
 	<html lang="en">
@@ -190,9 +196,9 @@ function show_html_start_block($currPageIdx = PageIndex::None) {
 	</head>
 	<body>
 	<header class="sticky-top">
-		<nav class="navbar navbar-expand-lg bg-quaternary">
+		<nav class="navbar navbar-expand-lg <?= $h_nav_classes ?>">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#"><?= TITLE_DEFAULT ?></a>
+				<a class="navbar-brand" href="#"><?= $h_nav_title ?></a>
 				<button
 					class="navbar-toggler" type="button" data-bs-toggle="collapse"
 					data-bs-target="#navbarSupportedContent"

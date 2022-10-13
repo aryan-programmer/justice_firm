@@ -20,6 +20,13 @@ const USER_TYPE_TO_IDX = [
 ];
 const USER_TYPES       = ['client', 'lawyer', 'admin'];
 
+const NAV_CLASS_DEFAULT    = "bg-quaternary";
+const NAV_CLASS_BY_USER = [
+	USER_CLIENT => "bg-gradient-primary-secondary",
+	USER_LAWYER => "bg-gradient-warning-tertiary",
+	USER_ADMIN  => "navbar-dark bg-dark",
+];
+
 const LAWYER_STATUS_MAP = [
 	'-' => 'waiting',
 	'y' => 'confirmed',

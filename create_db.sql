@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS `justice_firm`;
+
 USE `justice_firm`;
 
 SET FOREIGN_KEY_CHECKS = 0;
