@@ -51,7 +51,6 @@ const INVALID_IMAGE_ERR_MSG     = "Image must be a jpeg, png or a gif";
 const INVALID_FILE_SIZE_ERR_MSG = "The file uploaded must be less than " . MAX_FILE_SIZE_STR . " in size.";
 
 const DATE_MYSQL = "Y-m-d H:i:s";
-//const MAPS_API_KEY = "AIzaSyDSpFLDwXfwMLJi1irqs7wTrOAuRGIt-Zs";
 
 const PHONE_REGEX = /** @lang PhpRegExp */
 '/^[0-9]{3}([-\s]?)[0-9]{3}([-\s]?)[0-9]{4}$/';
