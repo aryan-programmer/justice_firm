@@ -1,4 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS `justice_firm`;
+CREATE DATABASE IF NOT EXISTS `justice_firm`;
 
 USE `justice_firm`;
 
@@ -166,15 +166,3 @@ VALUES ('Bankruptcy'),
        ('Intellectual Property'),
        ('Personal Injury'),
        ('Tax');
-
-ALTER TABLE `appointment`
-	ADD COLUMN `opened_on` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
-
-UPDATE `appointment`
-SET `status` = ?
-WHERE `id` = ?;
-
-UPDATE `appointment`
-SET `status`    = ?,
-    `timestamp` = ?
-WHERE `id` = ?;
